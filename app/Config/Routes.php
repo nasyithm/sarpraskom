@@ -55,9 +55,9 @@ $routes->get('peminjaman', 'Peminjaman::index', ['filter' => 'authfilter']);
 $routes->post('peminjaman/simpan', 'Peminjaman::simpan');
 
 $routes->get('daftarpeminjaman', 'DaftarPeminjaman::index', ['filter' => 'authfilter']);
-$routes->get('daftarpeminjaman/ubah/(:num)', 'Daftarpeminjaman::ubah/$1', ['filter' => 'authfilter']);
-$routes->post('daftarpeminjaman/update/(:num)', 'Daftarpeminjaman::update/$1');
-$routes->delete('daftarpeminjaman/(:num)', 'Daftarpeminjaman::hapus/$1');
+$routes->get('daftarpeminjaman/ubah/(:num)', 'DaftarPeminjaman::ubah/$1', ['filter' => 'authfilter']);
+$routes->post('daftarpeminjaman/update/(:num)', 'DaftarPeminjaman::update/$1');
+$routes->delete('daftarpeminjaman/(:num)', 'DaftarPeminjaman::hapus/$1');
 
 $routes->get('anggota', 'Anggota::index', ['filter' => 'authfilter']);
 $routes->get('anggota/tambah', 'Anggota::tambah', ['filter' => 'authfilter']);
