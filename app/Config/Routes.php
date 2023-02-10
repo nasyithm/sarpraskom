@@ -66,6 +66,10 @@ $routes->post('anggota/simpan', 'Anggota::simpan');
 $routes->post('anggota/update/(:num)', 'Anggota::update/$1');
 $routes->delete('anggota/(:num)', 'Anggota::hapus/$1');
 
+$routes->get('profil', 'Profil::index', ['filter' => 'authfilter']);
+$routes->get('profil/ubah/(:num)', 'Profil::ubah/$1', ['filter' => 'authfilter']);
+$routes->post('profil/update/(:num)', 'Profil::update/$1');
+$routes->delete('profil/(:num)', 'Profil::hapus/$1');
 
 /*
  * --------------------------------------------------------------------

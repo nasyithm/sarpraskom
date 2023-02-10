@@ -1,7 +1,13 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-md-inline">
+        <a class="nav-link" id="sidebarToggle" role="button">
+            <i class="fas fa-bars fa-lg text-primary"></i>
+        </a>
+    </div>
 
-    <div class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0">
+    <div class="text-center d-none d-md-inline mt-2 ml-2">
         <h5>Sistem Peminjaman Sarana Prasarana SMK Komputer Karanganyar</h5>
     </div>
 
@@ -15,9 +21,9 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="<?= base_url('profil'); ?>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Profil
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
