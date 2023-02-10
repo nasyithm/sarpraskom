@@ -108,7 +108,7 @@
                                     <th>Kode</th>
                                     <th>Nama</th>
                                     <th>Spesifikasi</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah (Tersedia)</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -120,7 +120,7 @@
                                         <td><?= $s['kode']; ?></td>
                                         <td><?= $s['nama']; ?></td>
                                         <td><?= $s['spesifikasi']; ?></td>
-                                        <td><?= $s['jumlah']; ?></td>
+                                        <td><?= ($s['jumlah'] > 0) ? $s['jumlah'] : 'Tidak Tersedia'; ?></td>
                                         <td>
                                             <a href="<?= base_url('sarana/ubah'); ?>/<?= $s['id']; ?>" class="btn btn-warning mb-1">Ubah</a>
                                             <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">Hapus</a>

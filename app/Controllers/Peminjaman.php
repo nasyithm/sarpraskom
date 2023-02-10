@@ -60,6 +60,37 @@ class Peminjaman extends BaseController
             'status' => $this->request->getVar('status')
         ]);
 
+        $sarpras = $this->request->getVar('sarpras');
+        $sarana = $this->saranaModel->getSarana();
+        $prasarana = $this->prasaranaModel->getPrasarana();
+        foreach ($sarana as $s) {
+            foreach ($prasarana as $p) {
+                if ($sarpras == $p['nama']) {
+                    $jml_prasarana = intval($p['jumlah']) - 1;
+
+                    $this->prasaranaModel->save([
+                        'id' => $p['id'],
+                        'kode' => $p['kode'],
+                        'nama' => $p['nama'],
+                        'spesifikasi' => $p['spesifikasi'],
+                        'jumlah' => $jml_prasarana
+                    ]);
+                }
+            }
+
+            if ($sarpras == $s['nama']) {
+                $jml_sarana = intval($s['jumlah']) - 1;
+
+                $this->saranaModel->save([
+                    'id' => $s['id'],
+                    'kode' => $s['kode'],
+                    'nama' => $s['nama'],
+                    'spesifikasi' => $s['spesifikasi'],
+                    'jumlah' => $jml_sarana
+                ]);
+            }
+        }
+
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 
         return redirect()->to(base_url('peminjaman'));

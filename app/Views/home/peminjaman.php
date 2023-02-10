@@ -118,12 +118,12 @@
                     <div class="col-sm-10">
                         <select class="form-control" id="sarpras" name="sarpras" value="<?= old('sarpras'); ?>">
                             <option disabled selected hidden>Pilih Sarpras...</option>
-                            <?php foreach ($sarana as $s) : ?>
+                            <?php foreach ($sarana as $s) : if($s['jumlah'] > 0) : ?>
                                 <option><?= $s['nama']; ?></option>
-                            <?php endforeach; ?>
-                            <?php foreach ($prasarana as $p) : ?>
+                            <?php endif; endforeach; ?>
+                            <?php foreach ($prasarana as $p) : if($p['jumlah'] > 0) : ?>
                                 <option><?= $p['nama']; ?></option>
-                            <?php endforeach; ?>
+                            <?php endif; endforeach; ?>
                         </select>
                     </div>
                 </div>
