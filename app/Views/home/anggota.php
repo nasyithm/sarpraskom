@@ -84,8 +84,10 @@
             <h1 class="h3 mb-0 text-gray-800">Anggota</h1>
             <div class="d-sm-flex align-items-center justify-content-between mb-1">
                 <p class="">Berikut merupakan tabel daftar anggota.</p>
-                <a href="<?= base_url('anggota/tambah'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                <a href="<?= base_url('anggota/tambah'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ml-auto">
                     <i class="fas fa-upload fa-sm text-white-50"></i> Tambah Data</a>
+                <a href="<?= base_url('anggota/export'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm ml-1">
+                    <i class="fas fa-file-export fa-sm text-white-50"></i> Export Excel</a>
             </div>
 
             <?php if (session()->getFlashdata('pesan')) : ?>
@@ -122,8 +124,12 @@
                                         <td><?= $a['kelas']; ?></td>
                                         <td><?= $a['nohp']; ?></td>
                                         <td>
-                                            <a href="<?= base_url('anggota/ubah'); ?>/<?= $a['id']; ?>" class="btn btn-warning mb-1">Ubah</a>
-                                            <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">Hapus</a>
+                                            <a href="<?= base_url('anggota/ubah'); ?>/<?= $a['id']; ?>" class="btn btn-warning mb-1">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
 
                                             <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">

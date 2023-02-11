@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\PrasaranaModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Prasarana extends BaseController
 {
@@ -115,5 +117,52 @@ class Prasarana extends BaseController
         $this->prasaranaModel->query('ALTER TABLE prasarana AUTO_INCREMENT = 1');
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to(base_url('prasarana'));
+    }
+
+    public function export()
+    {
+        $prasarana = $this->prasaranaModel->getPrasarana();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Kode');
+        $sheet->setCellValue('C1', 'Nama');
+        $sheet->setCellValue('D1', 'Spesifikasi');
+        $sheet->setCellValue('E1', 'Jumlah');
+
+        $column = 2;
+        foreach ($prasarana as $value) {
+            $sheet->setCellValue('A'.$column, ($column-1));
+            $sheet->setCellValue('B'.$column, $value['kode']);
+            $sheet->setCellValue('C'.$column, $value['nama']);
+            $sheet->setCellValue('D'.$column, $value['spesifikasi']);
+            $sheet->setCellValue('E'.$column, $value['jumlah']);
+            $column++;
+        }
+
+        $sheet->getStyle('A1:E1')->getFont()->setBold(true);
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000']
+                ],
+            ],
+        ];
+        $sheet->getStyle('A1:E'.($column-1))->applyFromArray($styleArray);
+
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+        $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=prasarana.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

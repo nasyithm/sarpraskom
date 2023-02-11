@@ -104,8 +104,12 @@
             </div>
 
             <!-- Option Profil -->
-            <a href="<?= base_url('profil/ubah'); ?>/<?= $id; ?>" class="btn btn-warning">Ubah</a>
-            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#hapusModal">Hapus</a>
+            <a href="<?= base_url('profil/ubah'); ?>/<?= $id; ?>" class="btn btn-warning">
+                <i class="fas fa-pen"></i>
+            </a>
+            <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">
+                <i class="fas fa-trash"></i>
+            </a>
 
             <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
