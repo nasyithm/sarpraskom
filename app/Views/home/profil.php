@@ -1,81 +1,15 @@
 <?= $this->extend('/layout/dashboard'); ?>
 
 <?= $this->section('dashboard-content'); ?>
-<!-- Nav Item - Dashboard -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('dashboard'); ?>">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-</li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Informasi
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('sarana'); ?>">
-        <i class="fas fa-fw fa-toolbox"></i>
-        <span>Sarana</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('prasarana'); ?>">
-        <i class="fas fa-fw fa-school"></i>
-        <span>Prasarana</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Peminjaman
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('peminjaman'); ?>">
-        <i class="fas fa-fw fa-shopping-basket"></i>
-        <span>Peminjaman</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('daftarpeminjaman'); ?>">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Daftar Peminjaman</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Anggota
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('anggota'); ?>">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Anggota</span></a>
-</li>
-
-</ul>
-<!-- End of Sidebar -->
+<?= $this->include('/layout/navbar'); ?>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
     <div id="content">
-        <?= $this->include('/layout/dashtopbar'); ?>
+        <?= $this->include('/layout/topbar'); ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -97,14 +31,14 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Profil Akun</h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-dark">
                     <p>User ID &nbsp; : &nbsp; <?= $userid; ?></p>
                     <p>Nama &emsp; : &nbsp; <?= $nama; ?></p>
                 </div>
             </div>
 
             <!-- Option Profil -->
-            <a href="<?= base_url('profil/ubah'); ?>/<?= $id; ?>" class="btn btn-warning">
+            <a href="<?= base_url('profil/ubah'); ?>/<?= $id; ?>" class="btn btn-warning mb-1">
                 <i class="fas fa-pen"></i>
             </a>
             <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">

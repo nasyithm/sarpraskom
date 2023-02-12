@@ -70,12 +70,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModal">Apakah ingin keluar?</h5>
+                    <h5 class="modal-title text-dark" id="logoutModal">Apakah ingin keluar?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">x</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih "Logout" untuk keluar dari akun Anda.</div>
+                <div class="modal-body text-dark">Pilih "Logout" untuk keluar dari akun Anda.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                     <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>

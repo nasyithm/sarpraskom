@@ -21,6 +21,15 @@ class Dashboard extends BaseController
         $this->anggotaModel = new AnggotaModel();
     }
     
+    protected $navbar = [
+        'dashboard' => 'active',
+        'sarana' => '',
+        'prasarana' => '',
+        'peminjaman' => '',
+        'daftarpeminjaman' => '',
+        'anggota' => ''
+    ];
+
     public function index()
     {
         $data = [
@@ -29,7 +38,8 @@ class Dashboard extends BaseController
             'prasarana' => $this->prasaranaModel->getPrasarana(),
             'peminjaman' => $this->peminjamanModel->getPeminjaman(),
             'anggota' => $this->anggotaModel->getAnggota(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
         
         return view('home/dashboard', $data);

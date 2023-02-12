@@ -1,81 +1,15 @@
 <?= $this->extend('/layout/dashboard'); ?>
 
 <?= $this->section('dashboard-content'); ?>
-<!-- Nav Item - Dashboard -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('dashboard'); ?>">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-</li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Informasi
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('sarana'); ?>">
-        <i class="fas fa-fw fa-toolbox"></i>
-        <span>Sarana</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('prasarana'); ?>">
-        <i class="fas fa-fw fa-school"></i>
-        <span>Prasarana</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Peminjaman
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('peminjaman'); ?>">
-        <i class="fas fa-fw fa-shopping-basket"></i>
-        <span>Peminjaman</span></a>
-</li>
-
-<!-- Nav Item - Tables -->
-<li class="nav-item active">
-    <a class="nav-link" href="<?= base_url('daftarpeminjaman'); ?>">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Daftar Peminjaman</span></a>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
-<!-- Heading -->
-<div class="sidebar-heading">
-    Anggota
-</div>
-
-<!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="<?= base_url('anggota'); ?>">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Anggota</span></a>
-</li>
-
-</ul>
-<!-- End of Sidebar -->
+<?= $this->include('/layout/navbar'); ?>
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
     <div id="content">
-        <?= $this->include('/layout/dashtopbar'); ?>
+        <?= $this->include('/layout/topbar'); ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -87,18 +21,18 @@
             <form action="<?= base_url('daftarpeminjaman/update'); ?>/<?= $peminjaman['id']; ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="form-group row">
-                    <label for="idpeminjaman" class="col-sm-2 col-form-label">ID Peminjaman</label>
+                    <label for="idpeminjaman" class="col-sm-2 col-form-label text-dark">ID Peminjaman</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control <?= (validation_show_error('idpeminjaman')) ? 'is-invalid' : ''; ?>" id="idpeminjaman" name="idpeminjaman" value="<?= old('idpeminjaman', $peminjaman['idpeminjaman']); ?>" autofocus>
+                        <input type="text" class="form-control text-dark <?= (validation_show_error('idpeminjaman')) ? 'is-invalid' : ''; ?>" id="idpeminjaman" name="idpeminjaman" value="<?= old('idpeminjaman', $peminjaman['idpeminjaman']); ?>" autofocus>
                         <div class="invalid-feedback">
                             <?= validation_show_error('idpeminjaman'); ?>
                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="peminjam" class="col-sm-2 col-form-label">Peminjam</label>
+                    <label for="peminjam" class="col-sm-2 col-form-label text-dark">Peminjam</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="peminjam" name="peminjam" value="<?= old('peminjam', $peminjaman['peminjam']); ?>">
+                        <select class="form-control text-dark" id="peminjam" name="peminjam" value="<?= old('peminjam', $peminjaman['peminjam']); ?>">
                             <option disabled selected hidden>Pilih Peminjam...</option>
                             <?php foreach ($anggota as $a) : ?>
                                 <option><?= $a['nama']; ?></option>
@@ -107,9 +41,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="sarpras" class="col-sm-2 col-form-label">Sarpras</label>
+                    <label for="sarpras" class="col-sm-2 col-form-label text-dark">Sarpras</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="sarpras" name="sarpras" value="<?= old('sarpras', $peminjaman['sarpras']); ?>">
+                        <select class="form-control text-dark" id="sarpras" name="sarpras" value="<?= old('sarpras', $peminjaman['sarpras']); ?>">
                             <option disabled selected hidden>Pilih Sarpras...</option>
                             <?php foreach ($sarana as $s) : ?>
                                 <option><?= $s['nama']; ?></option>
@@ -121,21 +55,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tglpinjam" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
+                    <label for="tglpinjam" class="col-sm-2 col-form-label text-dark">Tanggal Pinjam</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tglpinjam" name="tglpinjam" value="<?= old('tglpinjam', $peminjaman['tglpinjam']); ?>">
+                        <input type="date" class="form-control text-dark" id="tglpinjam" name="tglpinjam" value="<?= old('tglpinjam', $peminjaman['tglpinjam']); ?>">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tglkembali" class="col-sm-2 col-form-label">Tanggal Kembali</label>
+                    <label for="tglkembali" class="col-sm-2 col-form-label text-dark">Tanggal Kembali</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tglkembali" name="tglkembali" value="<?= old('tglkembali', $peminjaman['tglkembali']); ?>">
+                        <input type="date" class="form-control text-dark" id="tglkembali" name="tglkembali" value="<?= old('tglkembali', $peminjaman['tglkembali']); ?>">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="status" class="col-sm-2 col-form-label">Status</label>
+                    <label for="status" class="col-sm-2 col-form-label text-dark">Status</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="status" name="status" value="<?= old('status', $peminjaman['status']); ?>">
+                        <select class="form-control text-dark" id="status" name="status" value="<?= old('status', $peminjaman['status']); ?>">
                             <option disabled selected hidden>Pilih Status...</option>
                             <option>Belum Kembali</option>
                             <option>Sudah Kembali</option>

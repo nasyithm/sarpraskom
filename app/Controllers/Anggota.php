@@ -15,14 +15,22 @@ class Anggota extends BaseController
         $this->anggotaModel = new AnggotaModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => '',
+        'prasarana' => '',
+        'peminjaman' => '',
+        'daftarpeminjaman' => '',
+        'anggota' => 'active'
+    ];
+
     public function index()
     {
-        // $anggota = $this->anggotaModel->findAll();
-        
         $data = [
             'title' => 'Anggota | SARPRASKOM',
             'anggota' => $this->anggotaModel->getAnggota(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/anggota', $data);
@@ -33,9 +41,10 @@ class Anggota extends BaseController
         $data = [
             'title' => 'Tambah Anggota | SARPRASKOM',
             'validation' => \Config\Services::validation(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
-        return view('data/dataanggota', $data);
+        return view('data/tambahanggota', $data);
     }
 
     public function simpan()
@@ -71,7 +80,8 @@ class Anggota extends BaseController
             'title' => 'Ubah Anggota | SARPRASKOM',
             'validation' => \Config\Services::validation(),
             'anggota' => $this->anggotaModel->getAnggota($id),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
         return view('data/ubahanggota', $data);
     }

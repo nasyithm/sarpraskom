@@ -22,6 +22,15 @@ class Peminjaman extends BaseController
         $this->anggotaModel = new AnggotaModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => '',
+        'prasarana' => '',
+        'peminjaman' => 'active',
+        'daftarpeminjaman' => '',
+        'anggota' => ''
+    ];
+
     public function index()
     {
         $data = [
@@ -30,7 +39,8 @@ class Peminjaman extends BaseController
             'sarana' => $this->saranaModel->getSarana(),
             'prasarana' => $this->prasaranaModel->getPrasarana(),
             'anggota' => $this->anggotaModel->getAnggota(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/peminjaman', $data);

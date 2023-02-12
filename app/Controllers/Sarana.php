@@ -15,14 +15,22 @@ class Sarana extends BaseController
         $this->saranaModel = new SaranaModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => 'active',
+        'prasarana' => '',
+        'peminjaman' => '',
+        'daftarpeminjaman' => '',
+        'anggota' => ''
+    ];
+
     public function index()
     {
-        // $sarana = $this->saranaModel->findAll();
-        
         $data = [
             'title' => 'Sarana | SARPRASKOM',
             'sarana' => $this->saranaModel->getSarana(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/sarana', $data);
@@ -33,9 +41,10 @@ class Sarana extends BaseController
         $data = [
             'title' => 'Tambah Sarana | SARPRASKOM',
             'validation' => \Config\Services::validation(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
-        return view('data/datasarana', $data);
+        return view('data/tambahsarana', $data);
     }
 
     public function simpan()
@@ -71,7 +80,8 @@ class Sarana extends BaseController
             'title' => 'Ubah Sarana | SARPRASKOM',
             'validation' => \Config\Services::validation(),
             'sarana' => $this->saranaModel->getSarana($id),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
         return view('data/ubahsarana', $data);
     }

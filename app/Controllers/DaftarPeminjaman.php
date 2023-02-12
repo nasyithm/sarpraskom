@@ -24,14 +24,22 @@ class DaftarPeminjaman extends BaseController
         $this->anggotaModel = new AnggotaModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => '',
+        'prasarana' => '',
+        'peminjaman' => '',
+        'daftarpeminjaman' => 'active',
+        'anggota' => ''
+    ];
+
     public function index()
     {
-        // $peminjaman = $this->peminjamanModel->findAll();
-
         $data = [
             'title' => 'Daftar Peminjaman | SARPRASKOM',
             'peminjaman' => $this->peminjamanModel->getPeminjaman(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/daftarpeminjaman', $data);
@@ -46,7 +54,8 @@ class DaftarPeminjaman extends BaseController
             'sarana' => $this->saranaModel->getSarana(),
             'prasarana' => $this->prasaranaModel->getPrasarana(),
             'anggota' => $this->anggotaModel->getAnggota(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
         return view('data/ubahpeminjaman', $data);
     }

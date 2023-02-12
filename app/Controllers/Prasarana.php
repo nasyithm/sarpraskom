@@ -15,14 +15,22 @@ class Prasarana extends BaseController
         $this->prasaranaModel = new PrasaranaModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => '',
+        'prasarana' => 'active',
+        'peminjaman' => '',
+        'daftarpeminjaman' => '',
+        'anggota' => ''
+    ];
+
     public function index()
-    {
-        // $prasarana = $this->prasaranaModel->findAll();
-        
+    { 
         $data = [
             'title' => 'Prasarana | SARPRASKOM',
             'prasarana' => $this->prasaranaModel->getPrasarana(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/prasarana', $data);
@@ -33,9 +41,10 @@ class Prasarana extends BaseController
         $data = [
             'title' => 'Tambah Prasarana | SARPRASKOM',
             'validation' => \Config\Services::validation(),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
-        return view('data/dataprasarana', $data);
+        return view('data/tambahprasarana', $data);
     }
 
     public function simpan()
@@ -71,7 +80,8 @@ class Prasarana extends BaseController
             'title' => 'Ubah Prasarana | SARPRASKOM',
             'validation' => \Config\Services::validation(),
             'prasarana' => $this->prasaranaModel->getPrasarana($id),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
         return view('data/ubahprasarana', $data);
     }

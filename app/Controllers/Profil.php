@@ -13,13 +13,23 @@ class Profil extends BaseController
         $this->authModel = new AuthModel();
     }
 
+    protected $navbar = [
+        'dashboard' => '',
+        'sarana' => '',
+        'prasarana' => '',
+        'peminjaman' => '',
+        'daftarpeminjaman' => '',
+        'anggota' => ''
+    ];
+
     public function index()
     {
         $data = [
             'title' => 'Profil | SARPRASKOM',
             'id' => session()->get('id'),
             'userid' => session()->get('userid'),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('home/profil', $data);
@@ -32,7 +42,8 @@ class Profil extends BaseController
             'validation' => \Config\Services::validation(),
             'id' => session()->get('id'),
             'userid' => session()->get('userid'),
-            'nama' => session()->get('nama')
+            'nama' => session()->get('nama'),
+            'navbar' => $this->navbar
         ];
 
         return view('data/ubahprofil', $data);
