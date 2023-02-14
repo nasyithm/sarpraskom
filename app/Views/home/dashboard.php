@@ -30,7 +30,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Sarana</div>
-                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($sarana); ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($sarana); ?> Buah</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-toolbox fa-2x text-primary"></i>
@@ -48,7 +48,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Prasarana</div>
-                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($prasarana); ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($prasarana); ?> Buah</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-school fa-2x text-success"></i>
@@ -66,7 +66,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                         Daftar Peminjaman</div>
-                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($peminjaman); ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($peminjaman); ?> Peminjaman</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-list fa-2x text-warning"></i>
@@ -84,7 +84,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                         Anggota</div>
-                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($anggota); ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-dark"><?= count($anggota); ?> Orang</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-user fa-2x text-danger"></i>
@@ -94,9 +94,67 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Diagram Statistik Peminjaman Bulan <?php
+                    $bulanIni = new DateTime();
+                    echo strftime('%B', $bulanIni->getTimestamp()); ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <script>
+                            <?php
+                            $labeldia = "";
+                            $datadia = "";
+                            $minggu = [
+                                '1' => 0,
+                                '2' => 0,
+                                '3' => 0,
+                                '4' => 0
+                            ];
+
+                            for ($i = 1; $i <= 4; $i++) {
+                                $labeldia .= '"Minggu Ke-' . $i . '",';
+                            }
+
+                            foreach ($peminjaman as $p) {
+                                $h = (int) date('d', strtotime($p['tglpinjam']));
+                                $b = (int) date('m', strtotime($p['tglpinjam']));
+                                if ($b == date('m')) {
+                                    if ($h <= 7) {
+                                        $minggu['1']++;
+                                    } elseif ($h > 7 && $h <= 14) {
+                                        $minggu['2']++;
+                                    } elseif ($h > 14 && $h <= 21) {
+                                        $minggu['3']++;
+                                    } elseif ($h > 14 && $h <= 31) {
+                                        $minggu['4']++;
+                                    }
+                                }
+                            }
+                            
+                            foreach ($minggu as $m) {
+                                $datadia .= '"' . $m . '",';
+                            }
+
+                            $labeldia = rtrim($labeldia, ",");
+                            $datadia = rtrim($datadia, ",");
+                            echo "var labeldia = [$labeldia];";
+                            echo "var datadia = [$datadia];";
+                            ?>
+                        </script>
+                        <canvas id="diagramArea"></canvas>
+                    </div>
+                    <hr>
+                    Diagram ini menampilkan data statistik jumlah peminjaman bulan ini pada setiap minggu.
+                </div>
+            </div>
         </div>
-        <!-- /.container-fluid -->
+        <!--/.container-fluid -->
 
     </div>
-    <!-- End of Main Content -->
+    <!--End of Main Content-->
+
     <?= $this->endSection(); ?>
