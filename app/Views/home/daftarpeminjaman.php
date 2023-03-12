@@ -65,31 +65,13 @@
                                             <a href="<?= base_url('daftarpeminjaman/ubah'); ?>/<?= $p['id']; ?>" class="btn btn-warning mb-1">
                                                 <i class="fas fa-pen"></i>
                                             </a>
-                                            <a class="btn btn-danger mb-1" href="#" data-toggle="modal" data-target="#hapusModal">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-
-                                            <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="hapusModal">Apakah yakin ingin dihapus?</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">x</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">Pilih "Hapus" untuk menghapus data.</div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                                            <form action="<?= base_url('daftarpeminjaman'); ?>/<?= $p['id']; ?>" method="post" class="d-inline">
-                                                                <?= csrf_field(); ?>
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <button type="submit" class="btn btn-primary">Hapus</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <form action="<?= base_url('daftarpeminjaman'); ?>/<?= $p['id']; ?>" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger mb-1" onclick="return confirm('Apakah yakin ingin dihapus?');">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

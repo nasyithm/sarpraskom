@@ -84,6 +84,7 @@ class DaftarPeminjaman extends BaseController
 
         $this->peminjamanModel->save([
             'id' => $id,
+            'idpeminjaman' => $this->request->getVar('idpeminjaman'),
             'peminjam' => $this->request->getVar('peminjam'),
             'sarpras' => $this->request->getVar('sarpras'),
             'tglpinjam' => $this->request->getVar('tglpinjam'),
